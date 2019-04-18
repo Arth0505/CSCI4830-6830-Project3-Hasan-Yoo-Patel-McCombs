@@ -22,5 +22,16 @@ public class RopeScript : MonoBehaviour
         {
             this.transform.localScale += new Vector3(0, -0.1f, 0);
         }
+
+        //below values will need to be changed after the crane is made to final size
+        if(Input.GetKey(KeyCode.G) && this.transform.position.z >= 6.3)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z -0.1f);
+        }
+
+        if(Input.GetKey(KeyCode.T) && this.transform.position.z <= 6.3)
+        {
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.1f);
+        }
     }
 }
