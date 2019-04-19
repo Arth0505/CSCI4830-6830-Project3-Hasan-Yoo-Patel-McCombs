@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RopeScript : MonoBehaviour
 {
+    public Transform Move1;
+    public Transform Move2;
+    float speed = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,8 @@ public class RopeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float updateStep = speed * Time.deltaTime;
+
         //the values in the following 2 if statements are subject to change when we realize what size the boxes will be.
         if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 10)
         {
@@ -25,15 +30,15 @@ public class RopeScript : MonoBehaviour
         }
 
         //below values will need to be changed after the crane is made to final size
-        if(Input.GetKey(KeyCode.G) && this.transform.position.z >= 3)
+        if(Input.GetKey(KeyCode.G))
         {
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z -0.1f);
+            this.transform.position = Vector3.MoveTowards(transform.position, Move1.position, updateStep);    
         }
 
         //for some reason, this if statement needs the z transform to be +4.0 from the actual coordinate you want to stop at.
-        if(Input.GetKey(KeyCode.T) && this.transform.position.z < 10.3)
+        if(Input.GetKey(KeyCode.T))
         {
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 0.1f);
+            this.transform.position = Vector3.MoveTowards(transform.position, Move2.position, updateStep);   
         }
     }
 }
