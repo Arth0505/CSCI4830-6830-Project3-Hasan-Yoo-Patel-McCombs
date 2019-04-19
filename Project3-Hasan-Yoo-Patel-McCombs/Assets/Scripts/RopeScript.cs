@@ -19,14 +19,14 @@ public class RopeScript : MonoBehaviour
         float updateStep = speed * Time.deltaTime;
 
         //the values in the following 2 if statements are subject to change when we realize what size the boxes will be.
-        if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 10)
+        if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 10) // ***change the 10 to something that wont make the magnet go through the floor!!
         {
-            this.transform.localScale += new Vector3(0, 0.1f, 0);
+            this.transform.localScale += new Vector3(0, 0.0125f, 0);
         }
 
         if(Input.GetKey(KeyCode.W) && this.transform.localScale.y > 3)
         {
-            this.transform.localScale += new Vector3(0, -0.1f, 0);
+            this.transform.localScale += new Vector3(0, -0.0125f, 0);
         }
 
         //below values will need to be changed after the crane is made to final size

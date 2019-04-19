@@ -14,6 +14,7 @@ public class CraneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //rotates the crane itself horizontally at a speed of .5f
         if(Input.GetKey(KeyCode.A))
         {
             crane.transform.Rotate(0, Input.GetAxis("Horizontal") * +.5f, 0);
