@@ -1237,7 +1237,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38572
+  m_Name: pb_Mesh38586
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -2060,7 +2060,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38676
+  m_Name: pb_Mesh38686
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -2873,6 +2873,7 @@ GameObject:
   - component: {fileID: 1096989687}
   - component: {fileID: 1096989686}
   - component: {fileID: 1096989685}
+  - component: {fileID: 1096989691}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -21819,13 +21820,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1096989691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096989684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5607204a81cc4484aa0248da816aa21f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crane: {fileID: 1096989684}
 --- !u!43 &1146428517
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38526
+  m_Name: pb_Mesh38540
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -24859,7 +24873,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38630
+  m_Name: pb_Mesh38646
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
