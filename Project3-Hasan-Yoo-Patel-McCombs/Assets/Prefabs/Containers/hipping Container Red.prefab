@@ -6638,7 +6638,7 @@ GameObject:
   - component: {fileID: 7602057021153447801}
   m_Layer: 0
   m_Name: hipping Container Red
-  m_TagString: Untagged
+  m_TagString: red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127

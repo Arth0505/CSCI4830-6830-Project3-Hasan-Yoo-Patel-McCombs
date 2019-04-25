@@ -41,5 +41,6 @@ public class BoxScript : MonoBehaviour
             following = true;
             Magnet = collision.gameObject;
         }
+
     }
 }

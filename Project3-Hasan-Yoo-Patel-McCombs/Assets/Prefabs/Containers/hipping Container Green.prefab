@@ -1880,7 +1880,7 @@ GameObject:
   - component: {fileID: 619113578391990336}
   m_Layer: 0
   m_Name: hipping Container Green
-  m_TagString: Untagged
+  m_TagString: green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127

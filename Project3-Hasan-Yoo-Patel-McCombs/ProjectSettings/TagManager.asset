@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - blue
+  - green
+  - orange
+  - red
+  - yellow
+  - greenContainer
+  - redContainer
+  - blueContainer
+  - orangeConatiner
+  - yellowContainer
   layers:
   - Default
   - TransparentFX
