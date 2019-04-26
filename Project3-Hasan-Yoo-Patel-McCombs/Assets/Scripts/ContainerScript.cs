@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ContainerScript : MonoBehaviour
 {
+	int score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class ContainerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "green" && gameObject.tag == "greenContainer")
+		/*if(collision.gameObject.tag == "green" && gameObject.tag == "greenContainer")
         {
             Destroy(collision.gameObject, 1);
         }
@@ -40,6 +42,29 @@ public class ContainerScript : MonoBehaviour
         if (collision.gameObject.tag == "orange" && gameObject.tag == "orangeContainer")
         {
             Destroy(collision.gameObject, 1);
-        }
+        }*/
+	
+			if (collision.gameObject.tag == gameObject.tag) //correct box placement
+			{
+				if (gameObject.tag != "noDestroy")
+				{
+				Debug.Log("Correct box");
+				Destroy(collision.gameObject);
+				score = score + 1;
+				Debug.Log(score);
+				}
+			}
+
+		else //wrong box placement
+		{
+			
+			if (gameObject.tag != "noDestroy")
+			{
+				Debug.Log("Wrong box!");
+				Destroy(collision.gameObject);
+				score = score - 1;
+				Debug.Log(score);
+			}
+		}
     }
 }
