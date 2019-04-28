@@ -6,7 +6,7 @@ using UnityEngine;
 public class ContainerScript : MonoBehaviour
 {
     public static int score = 0;
-    public static int containersLeft = 1;
+    public static int containersLeft = 9;
 
     public AudioClip rightSound;
     public AudioClip wrongSound;
