@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Project3-Hasan-Yoo-Patel-McCombs.unity
     guid: c24c96e1d1bdc42119961855ef5077a3
+  - enabled: 1
+    path: Assets/Scenes/Sorting scene.unity
+    guid: 51e8149eabd335e46b5fe64f0e1d2a27
   m_configObjects: {}

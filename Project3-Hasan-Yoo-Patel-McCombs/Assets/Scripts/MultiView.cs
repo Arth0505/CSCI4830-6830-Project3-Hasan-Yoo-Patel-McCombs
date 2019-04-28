@@ -7,7 +7,7 @@ public class MultiView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log(Display.displays.Length);
+	
 
 	if (Display.displays.Length > 1)
 	{
