@@ -43,7 +43,6 @@ public class ContainerScript : MonoBehaviour
 
                 if (PlayerPrefs.HasKey("highScore") == false)
                 {
-                    Debug.Log("Score1: " + score);
                     isHighScore = true;
                     Debug.Log("Here1");
                     PlayerPrefs.SetFloat("bestTime", time);
@@ -52,8 +51,6 @@ public class ContainerScript : MonoBehaviour
                 }
                 else if (score > PlayerPrefs.GetInt("highScore"))
                 {
-                    Debug.Log("Score2: " + score);
-                    Debug.Log("Here2");
                     isHighScore = true;
                     PlayerPrefs.SetFloat("bestTime", time);
                     PlayerPrefs.SetInt("highScore", score);
@@ -62,24 +59,17 @@ public class ContainerScript : MonoBehaviour
                 }
                 else if (score == PlayerPrefs.GetInt("highScore") && time < PlayerPrefs.GetFloat("bestTime"))
                 {
-                    Debug.Log("Score3: " + score);
-                    Debug.Log("Here3");
                     isHighScore = true;
                     PlayerPrefs.SetFloat("bestTime", time);
                     PlayerPrefs.SetInt("highScore", score);
 
                 }               
-                    Debug.Log("Score4: " + score);
-                    Debug.Log(isHighScore);
                     if (isHighScore == false)
                     {
-                        Debug.Log("Here4");
                         finText.text = "Thank you for playing!!\nThe High Score is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore");
                     }
                     else
                     {
-                        Debug.Log("Score5: " + score);
-                        Debug.Log("Here5");
                         finText.text = "You beat the High Score!!\nThe High Score is now:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore");
                     }
                 
