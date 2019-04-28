@@ -18,7 +18,7 @@ public class ContainerScript : MonoBehaviour
     bool isTiming = true;
     float waitTime = 0;
     bool isNotSaved = true;
-    bool isHighScore = false;
+    static bool isHighScore = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,16 +29,17 @@ public class ContainerScript : MonoBehaviour
     {
         if (isTiming == true)
         {
-            time = time + Time.deltaTime;
+            time = time + Time.deltaTime; //time for level
         }
-        if (containersLeft == 0 && isNotSaved == true)
+        if (containersLeft == 0 && isNotSaved == true) //end result of level
         {
             isTiming = false;
 
             finText.text = "Congrats on completing the game!\nYour time was " + time + "\n Your score was " + score;
             waitTime = waitTime + Time.deltaTime;
-            if (waitTime >= 5f)
+            if (waitTime >= 5f) //waits 5 seconds and then saves the high score if there is one and outputs the results
             {
+                
 
                 if (PlayerPrefs.HasKey("highScore") == false)
                 {
@@ -67,24 +68,21 @@ public class ContainerScript : MonoBehaviour
                     PlayerPrefs.SetFloat("bestTime", time);
                     PlayerPrefs.SetInt("highScore", score);
 
-                }
-
-                else
-                {
+                }               
                     Debug.Log("Score4: " + score);
                     Debug.Log(isHighScore);
                     if (isHighScore == false)
                     {
                         Debug.Log("Here4");
-                        finText.text = "Thank you for playing!!\nThe High Score is:\nTime: " + time + "\nScore: " + score;
+                        finText.text = "Thank you for playing!!\nThe High Score is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore");
                     }
                     else
                     {
                         Debug.Log("Score5: " + score);
                         Debug.Log("Here5");
-                        finText.text = "You beat the High Score!!\nThe High Score is now:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("score");
+                        finText.text = "You beat the High Score!!\nThe High Score is now:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore");
                     }
-                }
+                
                 isNotSaved = false;
             }
 
