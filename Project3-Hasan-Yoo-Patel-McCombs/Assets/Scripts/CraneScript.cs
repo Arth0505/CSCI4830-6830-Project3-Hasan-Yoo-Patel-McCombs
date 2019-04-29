@@ -5,24 +5,29 @@ using UnityEngine;
 public class CraneScript : MonoBehaviour
 {
     public GameObject crane;
+    public GameObject rotLever;
+    float rPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rPos = rotLever.transform.localRotation.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(rotLever.transform.rotation.x);
         //rotates the crane itself horizontally at a speed of .5f
-        if(Input.GetKey(KeyCode.A))
+        //if(Input.GetKey(KeyCode.A))
+        if(rotLever.transform.localRotation.x>rPos+0.05f)
         {
-            crane.transform.Rotate(0, Input.GetAxis("Horizontal") * +.5f, 0);
+            transform.Rotate(0, 1 * +-.5f, 0);
         }
 
-        if(Input.GetKey(KeyCode.D))
+        //if(Input.GetKey(KeyCode.D))
+        if (rotLever.transform.localRotation.x < rPos-0.05f)
         {
-            crane.transform.Rotate(0, -Input.GetAxis("Horizontal") * -.5f, 0);
+            transform.Rotate(0, 1 * .5f, 0);
         }
     }
 }
