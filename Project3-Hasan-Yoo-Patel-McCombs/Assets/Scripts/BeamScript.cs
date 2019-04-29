@@ -11,8 +11,6 @@ public class BeamScript : MonoBehaviour
     public GameObject loadText;
     bool isFallen = false;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +36,10 @@ public class BeamScript : MonoBehaviour
         {
             if (collision.gameObject.name == "Floor") //gets the time after the beam falls
             {
-                isFallen = true;
-                holdTime = time;
+            //isFallen = true;
+            //holdTime = time;
+            //Reset Scene
+            SceneManager.LoadScene("Project3-Hasan-Yoo-Patel-McCombs");
             }
         }
     }
