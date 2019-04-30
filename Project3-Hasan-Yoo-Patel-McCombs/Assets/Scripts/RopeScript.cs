@@ -23,14 +23,14 @@ public class RopeScript : MonoBehaviour
     {
         float updateStep = speed * Time.deltaTime;
         //the values in the following 2 if statements are subject to change when we realize what size the boxes will be.
-        //if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 10) // ***change the 10 to something that wont make the magnet go through the floor!!
-        if (vertLever.transform.localRotation.x > vPos+0.05f && this.transform.localScale.y < 10) // tenative usage of physics to see if this will work
+        //if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 5.5)
+        if (vertLever.transform.localRotation.x > vPos+0.05f && this.transform.localScale.y < 5.5) // tenative usage of physics to see if this will work
         {
             this.transform.localScale += new Vector3(0, 0.0125f, 0);
         }
 
-        //if(Input.GetKey(KeyCode.W) && this.transform.localScale.y > 3)
-        if (vertLever.transform.localRotation.x < vPos-0.05f && this.transform.localScale.y > 3)    //// tenative usage of physics to see if this will work
+        //if(Input.GetKey(KeyCode.W) && this.transform.localScale.y > 2)
+        if (vertLever.transform.localRotation.x < vPos-0.05f && this.transform.localScale.y > 2)    //// tenative usage of physics to see if this will work
         {
             this.transform.localScale += new Vector3(0, -0.0125f, 0);
         }
