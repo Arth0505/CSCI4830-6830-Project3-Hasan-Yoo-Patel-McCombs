@@ -8,32 +8,34 @@ public class CraneScript : MonoBehaviour
     public GameObject rotLever;
     float rPos;
 
-    public AudioClip ConstantSound;
-    public AudioClip MovementSound;
-    public AudioClip MagnetAttach;
-    public AudioClip MagnetRelease;
-    public AudioSource currentSound;
+    //Movement sounds work but only for the rotation lever. I don't want to mess anything up so ill leave 
+    //it to Thomas to finish implementing the sound for the other levers.
+    public AudioSource ConstantSound;
+    public AudioSource MovementSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        ConstantSound.Play();
         rPos = rotLever.transform.localRotation.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rotLever.transform.rotation.x);
+        MovementSound.Stop();
         //rotates the crane itself horizontally at a speed of .5f
         //if(Input.GetKey(KeyCode.A))
-        if(rotLever.transform.localRotation.x>rPos+0.05f)
+        if (rotLever.transform.localRotation.x>rPos+0.05f)
         {
+            MovementSound.Play();
             transform.Rotate(0, 1 * +-.5f, 0);
         }
 
         //if(Input.GetKey(KeyCode.D))
         if (rotLever.transform.localRotation.x < rPos-0.05f)
         {
+            MovementSound.Play();
             transform.Rotate(0, 1 * .5f, 0);
         }
     }

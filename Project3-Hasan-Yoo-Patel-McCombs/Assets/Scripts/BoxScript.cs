@@ -9,6 +9,9 @@ public class BoxScript : MonoBehaviour
     bool following = false;
 
     private GameObject Magnet;
+    
+    public AudioSource MagnetAttach;
+    public AudioSource MagnetRelease;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class BoxScript : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Space))
             {//as soon as the spacebar is pressed, the box stops following. 
+                MagnetRelease.Play();
                 box.isKinematic = false;
                 box.useGravity = true;
                 following = false;
@@ -35,6 +39,7 @@ public class BoxScript : MonoBehaviour
         //when the magnet collides with the box, it begins to follow the magnet.
         if(collision.gameObject.name == "Magnet")
         {
+            MagnetAttach.Play();
             box.isKinematic = true;
             box.useGravity = false;
 
