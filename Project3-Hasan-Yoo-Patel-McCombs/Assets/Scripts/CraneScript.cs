@@ -7,6 +7,13 @@ public class CraneScript : MonoBehaviour
     public GameObject crane;
     public GameObject rotLever;
     float rPos;
+
+    public AudioClip ConstantSound;
+    public AudioClip MovementSound;
+    public AudioClip MagnetAttach;
+    public AudioClip MagnetRelease;
+    public AudioSource currentSound;
+
     // Start is called before the first frame update
     void Start()
     {
