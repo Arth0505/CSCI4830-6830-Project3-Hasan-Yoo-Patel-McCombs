@@ -21,7 +21,6 @@ public class RopeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(vertLever.transform.localRotation.x);
         float updateStep = speed * Time.deltaTime;
         //the values in the following 2 if statements are subject to change when we realize what size the boxes will be.
         //if(Input.GetKey(KeyCode.S) && this.transform.localScale.y < 10) // ***change the 10 to something that wont make the magnet go through the floor!!
