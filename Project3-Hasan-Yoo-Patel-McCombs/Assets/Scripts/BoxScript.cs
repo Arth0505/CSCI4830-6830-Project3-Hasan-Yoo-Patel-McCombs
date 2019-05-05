@@ -6,10 +6,10 @@ public class BoxScript : MonoBehaviour
 {
     //box refers to its own rigidbody. For some reason this.rigidbody doesnt want to play nice 
     public Rigidbody box;
-    bool following = false;
+    public bool following = false;
 
     private GameObject Magnet;
-    
+    public DropButtonScript dropButton;
     public AudioSource MagnetAttach;
     public AudioSource MagnetRelease;
     // Start is called before the first frame update
@@ -39,6 +39,8 @@ public class BoxScript : MonoBehaviour
         //when the magnet collides with the box, it begins to follow the magnet.
         if(collision.gameObject.name == "Magnet")
         {
+            dropButton.container = box;
+
             MagnetAttach.Play();
             box.isKinematic = true;
             box.useGravity = false;
