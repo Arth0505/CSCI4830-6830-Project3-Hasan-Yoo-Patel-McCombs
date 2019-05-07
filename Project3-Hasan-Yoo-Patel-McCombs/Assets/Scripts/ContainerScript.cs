@@ -20,16 +20,22 @@ public class ContainerScript : MonoBehaviour
     static bool isNotSaved = true;
     static bool isHighScore = false;
     static bool goToOutput = false;
+
+    static bool scoreInOrder = false;
+    static bool timeInOrder = false;
+
+    float highScore = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("time: " + waitTime);
+
+        Debug.Log("waitTime: " + waitTime);
         if (isTiming == true)
         {
             time = time + Time.deltaTime; //time for level
@@ -41,186 +47,109 @@ public class ContainerScript : MonoBehaviour
 
             finText.text = "Congrats on completing the game!\nYour time was " + time + "\n Your score was " + score;
             waitTime = waitTime + Time.deltaTime;
-            if (waitTime < 5f) //waits 5 seconds and then saves the high score if there is one and outputs the results
+            if (waitTime < 5f && isHighScore == false) //waits 5 seconds and then saves the high score if there is one and outputs the results
             {
-               
-                if (PlayerPrefs.HasKey("highScore") == false)
+
+                highScore = (score / time) * 100;
+
+
+                if (PlayerPrefs.HasKey("hs1") == false)
+                {
+                    PlayerPrefs.SetFloat("hs1", highScore);
+                    isHighScore = true;
+                }
+
+                else if (PlayerPrefs.HasKey("hs2") == false && PlayerPrefs.HasKey("hs1"))
                 {
                     isHighScore = true;
-                    PlayerPrefs.SetFloat("bestTime", time);
-                    PlayerPrefs.SetInt("highScore", score);
-
-                }
-                else if (score > PlayerPrefs.GetInt("highScore"))
-                {
-                    isHighScore = true;
-                    PlayerPrefs.SetFloat("bestTime", time);
-                    PlayerPrefs.SetInt("highScore", score);
-
-
-                }
-                else if (score == PlayerPrefs.GetInt("highScore") && time < PlayerPrefs.GetFloat("bestTime"))
-                {
-                    if ((PlayerPrefs.HasKey("highScore2") == false) && (PlayerPrefs.HasKey("highScore3") == false))
+                    if (PlayerPrefs.GetFloat("hs1") > highScore)
                     {
-                        PlayerPrefs.SetInt("highScore2", PlayerPrefs.GetInt("highScore"));
-                        PlayerPrefs.SetFloat("bestTime2", PlayerPrefs.GetFloat("bestTime"));
+                        PlayerPrefs.SetFloat("hs2", highScore);
+                    }
 
-                        PlayerPrefs.SetFloat("bestTime", time);
-                        PlayerPrefs.SetInt("highScore", score);
+                    else
+                    {
+                        PlayerPrefs.SetFloat("hs2", PlayerPrefs.GetFloat("hs1"));
+                        PlayerPrefs.SetFloat("hs1", highScore);
+                    }
+
+                }
+
+                else if (PlayerPrefs.HasKey("hs3") == false && PlayerPrefs.HasKey("hs1") == true && PlayerPrefs.HasKey("hs2") == true)
+                {
+                    isHighScore = true;
+                    if (PlayerPrefs.GetFloat("hs1") < highScore)
+                    {
+                        PlayerPrefs.SetFloat("hs3", PlayerPrefs.GetFloat("hs2"));
+                        PlayerPrefs.SetFloat("hs2", PlayerPrefs.GetFloat("hs1"));
+                        PlayerPrefs.SetFloat("hs1", highScore);
+                    }
+
+                    else if (PlayerPrefs.GetFloat("hs1") > highScore && PlayerPrefs.GetFloat("hs2") < highScore)
+                    {
+                        PlayerPrefs.SetFloat("hs3", PlayerPrefs.GetFloat("hs2"));
+                        PlayerPrefs.SetFloat("hs2", highScore);
+                    }
+
+                    else
+                    {
+                        PlayerPrefs.SetFloat("hs3", highScore);
+                    }
+                }
+
+                else
+                {
+                    if (PlayerPrefs.GetFloat("hs1") < highScore)
+                    {
+                        PlayerPrefs.SetFloat("hs3", PlayerPrefs.GetFloat("hs2"));
+                        PlayerPrefs.SetFloat("hs2", PlayerPrefs.GetFloat("hs1"));
+                        PlayerPrefs.SetFloat("hs1", highScore);
+
                         isHighScore = true;
                     }
 
-                    //if there is a 2nd score and no 3rd score
-                    else if ((PlayerPrefs.HasKey("highScore2") == true) && (PlayerPrefs.HasKey("highScore3") == false))
+                    else if (PlayerPrefs.GetFloat("hs1") > highScore && PlayerPrefs.GetFloat("hs2") < highScore)
                     {
-                        if (PlayerPrefs.GetInt("highScore2") == score)
-                        {
-                            if (PlayerPrefs.GetFloat("bestTime") < time) 
-                            {
-                                if(PlayerPrefs.GetFloat("bestTime2") > time)
-                                {
-                                    PlayerPrefs.SetInt("highScore3", PlayerPrefs.GetInt("highScore2"));
-                                    PlayerPrefs.SetFloat("bestTime3", PlayerPrefs.GetFloat("bestTime2"));
+                        PlayerPrefs.SetFloat("hs3", PlayerPrefs.GetFloat("hs2"));
+                        PlayerPrefs.SetFloat("hs2", highScore);
 
-                                    PlayerPrefs.SetInt("highScore2", score);
-                                    PlayerPrefs.SetFloat("bestTime2", time);
-
-
-                                    isHighScore = true;
-                                }
-
-                                else if(PlayerPrefs.GetFloat("bestTime2") < time)
-                                {
-                                    PlayerPrefs.SetInt("highScore3", score);
-                                    PlayerPrefs.SetFloat("bestTime3", time);
-
-                                    isHighScore = true;
-                                }
-
-                                Debug.Log("1");
-                            }
-                            else if (PlayerPrefs.GetFloat("bestTime") > time)
-                            {
-                                PlayerPrefs.SetInt("highScore3", PlayerPrefs.GetInt("highScore2"));
-                                PlayerPrefs.SetFloat("bestTime3", PlayerPrefs.GetFloat("bestTime2"));
-
-                                PlayerPrefs.SetInt("highScore2", PlayerPrefs.GetInt("highScore"));
-                                PlayerPrefs.SetFloat("bestTime2", PlayerPrefs.GetFloat("bestTime"));
-
-                                PlayerPrefs.SetInt("highScore", score);
-                                PlayerPrefs.SetFloat("bestTime", time);
-
-                                isHighScore = true;
-
-                                Debug.Log("1: " + PlayerPrefs.GetFloat("bestTime"));
-                                Debug.Log("2: " + PlayerPrefs.GetFloat("bestTime2"));
-                                Debug.Log("3: " + PlayerPrefs.GetFloat("bestTime3"));
-                                Debug.Log("2");
-                            }
-                        }
-                    }
-                   /* else if (PlayerPrefs.HasKey("highScore3") == true && PlayerPrefs.GetFloat("bestTime3") > time)
-                    {
-                        PlayerPrefs.SetInt("highscore3", score);
-                        PlayerPrefs.SetFloat("bestTime3", time);
                         isHighScore = true;
 
-                        Debug.Log("3");
+                    }
 
-                        Debug.Log("1: " + PlayerPrefs.GetFloat("bestTime"));
-                        Debug.Log("2: " + PlayerPrefs.GetFloat("bestTime2"));
-                        Debug.Log("3: " + PlayerPrefs.GetFloat("bestTime3"));
-                    }*/
-                }
-
-                else if (score == PlayerPrefs.GetInt("highScore") && time > PlayerPrefs.GetFloat("bestTime"))
-                {
-                    if (PlayerPrefs.HasKey("highScore2") == false && PlayerPrefs.HasKey("highScore3") == false) 
+                    else if (PlayerPrefs.GetFloat("hs3") < highScore)
                     {
-                        PlayerPrefs.SetInt("highScore2", score);
-                        PlayerPrefs.SetFloat("bestTime2", time);
+                        PlayerPrefs.SetFloat("hs3", highScore);
+
                         isHighScore = true;
-                    }
 
-                    else if(PlayerPrefs.HasKey("highScore2") == true && PlayerPrefs.HasKey("highScore3") == false)
-                    {
-                        if(PlayerPrefs.GetFloat("bestTime2") < time)
-                        {
-                            PlayerPrefs.SetInt("highScore3", score);
-                            PlayerPrefs.SetFloat("bestTime3", time);
-                            isHighScore = true;
-                        }
-
-                        else if(PlayerPrefs.GetFloat("bestTime2") > time)
-                        {
-                            PlayerPrefs.SetInt("highScore3", PlayerPrefs.GetInt("highScore2"));
-                            PlayerPrefs.SetFloat("bestTime3", PlayerPrefs.GetFloat("bestTime2"));
-
-                            PlayerPrefs.SetInt("highScore2", score);
-                            PlayerPrefs.SetFloat("bestTime2", time);
-                            isHighScore = true;
-                        }
-                    }
-
-                    else if(PlayerPrefs.HasKey("highScore") == true && PlayerPrefs.HasKey("highScore2") == true && PlayerPrefs.HasKey("highScore3") == true)
-                    {
-                        if(PlayerPrefs.GetFloat("bestTime2") > time)
-                        {
-                            PlayerPrefs.SetInt("highScore3", PlayerPrefs.GetInt("highScore2"));
-                            PlayerPrefs.SetFloat("bestTime3", PlayerPrefs.GetFloat("bestTime2"));
-
-                            PlayerPrefs.SetInt("highScore2", score);
-                            PlayerPrefs.SetFloat("bestTime2", time);
-                            isHighScore = true;
-                        }
-
-                        else if(PlayerPrefs.GetFloat("bestTime3") > time)
-                        {
-                            PlayerPrefs.SetInt("highScore3", score);
-                            PlayerPrefs.SetFloat("bestTime3", time);
-                            isHighScore = true;
-                        }
                     }
                 }
-
-                else if ((score > PlayerPrefs.GetInt("highScore2") && PlayerPrefs.HasKey("highScore2") == true) || (score < PlayerPrefs.GetInt("highScore") && PlayerPrefs.HasKey("highScore2") == false))
-                {
-                    isHighScore = true;
-                    PlayerPrefs.SetFloat("bestTime2", time);
-                    PlayerPrefs.SetInt("highScore2", score);
-                }
-
-                else if ((score > PlayerPrefs.GetInt("highScore3") && PlayerPrefs.HasKey("highScore3") == true) || (score < PlayerPrefs.GetInt("highScore2") && PlayerPrefs.HasKey("highScore3") == false))
-                {
-                    isHighScore = true;
-                    PlayerPrefs.SetFloat("bestTime3", time);
-                    PlayerPrefs.SetInt("highScore3", score);
-                }                                         
             }
-            else
-            {
-                if (isHighScore == false)
+
+            else{
+                if (isHighScore == false && waitTime > 5f)
                 {
-                    finText.text = "Thank you for playing!!\nThe Leaderboard is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore") + "\nTime: " + PlayerPrefs.GetFloat("bestTime2") + "\nScore: " + PlayerPrefs.GetInt("highScore2") + "\nTime: " + PlayerPrefs.GetFloat("bestTime3") + "\nScore: " + PlayerPrefs.GetInt("highScore3");
+                    finText.text = "Thank you for playing!!\nThe Leaderboard is:\nHigh Score 1: " + PlayerPrefs.GetFloat("hs1") + "\nHigh Score 2: " + PlayerPrefs.GetFloat("hs2") + "\nHigh Score 3: " + PlayerPrefs.GetFloat("hs3");
                 }
-                else if (isHighScore == true)
+                else if (isHighScore == true && waitTime > 5f)
                 {
-                    if (PlayerPrefs.HasKey("highScore2") == false)
+                    if (PlayerPrefs.HasKey("hs2") == false)
                     {
-                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore") + "\nTime: " + "N/A" + "\nScore: " + "N/A" + "\nTime: " + "N/A" + "\nScore: " + "N/A";
+                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nHigh Score 1: " + PlayerPrefs.GetFloat("hs1") + "\nHigh Score 2: " + "N/A" + "\nHigh Score 3: " + "N/A";
                     }
-                    else if (PlayerPrefs.HasKey("highScore2") == true && PlayerPrefs.HasKey("highScore3") == false)
+                    else if (PlayerPrefs.HasKey("hs2") == true && PlayerPrefs.HasKey("hs3") == false)
                     {
-                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore") + "\nTime: " + PlayerPrefs.GetFloat("bestTime2") + "\nScore: " + PlayerPrefs.GetInt("highScore2") + "\nTime: " + "N/A" + "\nScore: " + "N/A";
+                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nHigh Score 1: " + PlayerPrefs.GetFloat("hs1") + "\nHigh Score 2: " + PlayerPrefs.GetFloat("hs2") + "\nHigh Score 3: " + "N/A";
                     }
-                    else if (PlayerPrefs.HasKey("highScore2") == true && PlayerPrefs.HasKey("highScore") == true && PlayerPrefs.HasKey("highscore3") == true)
+                    else if (PlayerPrefs.HasKey("hs2") == true && PlayerPrefs.HasKey("hs1") == true && PlayerPrefs.HasKey("hs3") == true)
                     {
-                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nTime: " + PlayerPrefs.GetFloat("bestTime") + "\nScore: " + PlayerPrefs.GetInt("highScore") + "\nTime: " + PlayerPrefs.GetFloat("bestTime2") + "\nScore: " + PlayerPrefs.GetInt("highScore2") + "\nTime: " + PlayerPrefs.GetFloat("bestTime3") + "\nScore: " + PlayerPrefs.GetInt("highScore3");
+                        finText.text = "Congrats you made it on the Leaderboard!!\nThe Leaderboard is:\nHigh Score 1: " + PlayerPrefs.GetFloat("hs1") + "\nHigh Score 2: " + PlayerPrefs.GetFloat("hs2") + "\nHigh Score 3: " + PlayerPrefs.GetFloat("hs3");
                     }
                 }
-                isNotSaved = false;
+
             }
+
         }
     }
 
@@ -255,3 +184,5 @@ public class ContainerScript : MonoBehaviour
         }
     }
 }
+
+    
