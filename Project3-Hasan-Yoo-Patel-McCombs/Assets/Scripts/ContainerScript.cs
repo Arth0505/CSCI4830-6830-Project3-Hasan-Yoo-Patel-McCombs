@@ -34,8 +34,7 @@ public class ContainerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log("waitTime: " + waitTime);
+        Debug.Log("time: " + waitTime);
         if (isTiming == true)
         {
             time = time + Time.deltaTime; //time for level
@@ -186,3 +185,5 @@ public class ContainerScript : MonoBehaviour
 }
 
     
+
+        Debug.Log("waitTime: " + waitTime);

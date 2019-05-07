@@ -6634,7 +6634,6 @@ GameObject:
   - component: {fileID: 449639137267943668}
   - component: {fileID: 449639137267943669}
   - component: {fileID: 449639137267943670}
-  - component: {fileID: 3938280663201484235}
   - component: {fileID: 7602057021153447801}
   m_Layer: 0
   m_Name: hipping Container Red
@@ -11643,19 +11642,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
---- !u!114 &3938280663201484235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449639137267943671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa6b53ba66f391489b186ba5284b746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  box: {fileID: 7602057021153447801}
 --- !u!54 &7602057021153447801
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ TagManager:
   - orangeConatiner
   - yellowContainer
   - noDestroy
+  - Lever
+  - Drop
+  - NoDrop
   layers:
   - Default
   - TransparentFX
