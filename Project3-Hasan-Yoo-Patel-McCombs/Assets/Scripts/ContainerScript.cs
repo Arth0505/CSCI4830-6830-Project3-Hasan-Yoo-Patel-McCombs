@@ -29,7 +29,7 @@ public class ContainerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("time: " + waitTime);
+       // Debug.Log("time: " + waitTime);
         if (isTiming == true)
         {
             time = time + Time.deltaTime; //time for level
