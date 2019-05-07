@@ -185,5 +185,3 @@ public class ContainerScript : MonoBehaviour
 }
 
     
-
-        Debug.Log("waitTime: " + waitTime);
