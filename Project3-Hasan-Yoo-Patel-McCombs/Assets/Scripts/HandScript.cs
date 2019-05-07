@@ -33,4 +33,20 @@ public class HandScript : MonoBehaviour
 		}
 		
 	}
+
+	private void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.tag == "Lever")
+		{
+			if (this.gameObject.name == "hand_right")
+			{
+				OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.RTouch);
+			}
+			else if (this.gameObject.name == "hand_left")
+			{
+				OVRInput.SetControllerVibration(0f, 0f, OVRInput.Controller.LTouch);
+
+			}
+		}
+	}
 }
